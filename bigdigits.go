@@ -81,8 +81,9 @@ var bigDigits = [][]string{
 }
 
 func main() {
+	// If only one argument is passed (Args[0] holds program's name)
 	if len(os.Args) == 1 {
-		fmt.Printf("usage: %s <whole-number>\n", filepath.Base(os.Args[0]))
+		fmt.Printf("usage: %s <whole-number>\n", filepath.Dir(os.Args[0]))
 		os.Exit(1)
 	}
 
