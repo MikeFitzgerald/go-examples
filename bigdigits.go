@@ -71,7 +71,7 @@ var bigDigits = [][]string{
 		" 8   8 ",
 		" 8   8 ",
 		"  888  "},
-	{"  99999",
+	{"  9999 ",
 		" 9    9",
 		" 9    9",
 		"  99999",
@@ -81,18 +81,34 @@ var bigDigits = [][]string{
 }
 
 func main() {
+
 	// If only one argument is passed (Args[0] holds program's name)
 	if len(os.Args) == 1 {
-		fmt.Printf("usage: %s <whole-number>\n", filepath.Dir(os.Args[0]))
+		fmt.Printf("usage: %s <whole-number>\n", filepath.Base(os.Args[0]))
 		os.Exit(1)
 	}
 
+	// Set the stringOfDigits to be the second argument of the command-line
 	stringOfDigits := os.Args[1]
+
+	// For a variable row = 0, loop over the items in the first slot of bigDigits
+	// for row = 0; row < len(bigDigits[0]); row++
 	for row := range bigDigits[0] {
+
+		// Set line to be an empty string
 		line := ""
+
+		// Iterate over each digit in stringOfDigits
 		for column := range stringOfDigits {
+
+			// stringOfDigits[0], for example, returns a single character represented by a byte (since that's what strings are)
 			digit := stringOfDigits[column] - '0'
+
+			// If the digit is between 0 and 9...
+			// Go converts between uint8 and byte
 			if 0 <= digit && digit <= 9 {
+				// Why concatenate the space?
+				// Because it adds a space at the end of each row (and therefore between each big digit)
 				line += bigDigits[digit][row] + " "
 			} else {
 				log.Fatal("invalid whole number")
